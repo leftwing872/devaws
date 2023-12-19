@@ -1,0 +1,57 @@
+bucket_name="dev-class-eunhak"
+
+aws s3api delete-object --bucket  $bucket_name --key hubble_ultra_deep_field.tif
+
+split -b 30m ./hubble_ultra_deep_field.tif
+
+aws s3api create-multipart-upload --bucket $bucket_name --key hubble_ultra_deep_field.tif
+{
+    "ServerSideEncryption": "AES256",
+    "Bucket": "dev-class-eunhak",
+    "Key": "hubble_ultra_deep_field.tif",
+    "UploadId": "wz1.F7aQEncyeRMtXL3xTHXq2M8w2MWsVEUDz_JLEttlnEkebg.tzcVXL554HRqlV_smIYBXFBePu.vSVb9jgu9uQwzCOLX8zRehJg_i9yAA0XwBA2LdKPUR1UjFLTpX_SebB_LKPQOytRfxdijN4Q--"
+}
+
+aws s3api upload-part --bucket $bucket_name --key hubble_ultra_deep_field.tif --upload-id wz1.F7aQEncyeRMtXL3xTHXq2M8w2MWsVEUDz_JLEttlnEkebg.tzcVXL554HRqlV_smIYBXFBePu.vSVb9jgu9uQwzCOLX8zRehJg_i9yAA0XwBA2LdKPUR1UjFLTpX_SebB_LKPQOytRfxdijN4Q-- --part-number 1 --body xaa
+{
+    "ServerSideEncryption": "AES256",
+    "ETag": "\"3f6487ad3e1a9d65827aa9dfc59ae831\""
+}
+
+aws s3api upload-part --bucket $bucket_name --key hubble_ultra_deep_field.tif --upload-id wz1.F7aQEncyeRMtXL3xTHXq2M8w2MWsVEUDz_JLEttlnEkebg.tzcVXL554HRqlV_smIYBXFBePu.vSVb9jgu9uQwzCOLX8zRehJg_i9yAA0XwBA2LdKPUR1UjFLTpX_SebB_LKPQOytRfxdijN4Q-- --part-number 2 --body xab
+{
+    "ServerSideEncryption": "AES256",
+    "ETag": "\"570d5010efd90f08c14d7ea929c43806\""
+}
+
+aws s3api upload-part --bucket $bucket_name --key hubble_ultra_deep_field.tif --upload-id wz1.F7aQEncyeRMtXL3xTHXq2M8w2MWsVEUDz_JLEttlnEkebg.tzcVXL554HRqlV_smIYBXFBePu.vSVb9jgu9uQwzCOLX8zRehJg_i9yAA0XwBA2LdKPUR1UjFLTpX_SebB_LKPQOytRfxdijN4Q-- --part-number 3 --body xac
+{
+    "ServerSideEncryption": "AES256",
+    "ETag": "\"8a7fc7ec1cb39d0510222d08e531d37c\""
+}
+
+aws s3api upload-part --bucket $bucket_name --key hubble_ultra_deep_field.tif --upload-id wz1.F7aQEncyeRMtXL3xTHXq2M8w2MWsVEUDz_JLEttlnEkebg.tzcVXL554HRqlV_smIYBXFBePu.vSVb9jgu9uQwzCOLX8zRehJg_i9yAA0XwBA2LdKPUR1UjFLTpX_SebB_LKPQOytRfxdijN4Q-- --part-number 4 --body xad
+{
+    "ServerSideEncryption": "AES256",
+    "ETag": "\"e1c956dced181caed6555193985eae8b\""
+}
+
+aws s3api complete-multipart-upload --multipart-upload file://fileparts.json --bucket $bucket_name --key hubble_ultra_deep_field.tif --upload-id wz1.F7aQEncyeRMtXL3xTHXq2M8w2MWsVEUDz_JLEttlnEkebg.tzcVXL554HRqlV_smIYBXFBePu.vSVb9jgu9uQwzCOLX8zRehJg_i9yAA0XwBA2LdKPUR1UjFLTpX_SebB_LKPQOytRfxdijN4Q--
+{
+    "ServerSideEncryption": "AES256",
+    "Location": "https://dev-class-eunhak.s3.ap-northeast-2.amazonaws.com/hubble_ultra_deep_field.tif",
+    "Bucket": "dev-class-eunhak",
+    "Key": "hubble_ultra_deep_field.tif",
+    "ETag": "\"100498b35d8b873eca6c8ecf9de3b1f7-4\""
+}
+
+aws s3api get-object --bucket $bucket_name --key hubble_ultra_deep_field.tif hubble_ultra_deep_field.tif
+{
+    "AcceptRanges": "bytes",
+    "LastModified": "2023-12-19T01:30:11+00:00",
+    "ContentLength": 115354336,
+    "ETag": "\"100498b35d8b873eca6c8ecf9de3b1f7-4\"",
+    "ContentType": "binary/octet-stream",
+    "ServerSideEncryption": "AES256",
+    "Metadata": {}
+}
