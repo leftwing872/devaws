@@ -1,0 +1,53 @@
+{
+    "RequestItems": {
+        "Notes": [
+            {
+                "PutRequest": {
+                    "Item": {
+                        "NoteId": {
+                            "N": "32"
+                        },
+                        "UserId": {
+                            "S": "StudentA"
+                        },
+                        "Note": {
+                            "S": "Note goes here 1"
+                        }                        
+                    }
+                }
+            },
+            {
+                "PutRequest": {
+                    "Item": {
+                        "NoteId": {
+                            "N": "32"
+                        },
+                        "UserId": {
+                            "S": "StudentB"
+                        },
+                        "Note": {
+                            "S": "Note goes here 2"
+                        }                        
+                    }
+                }
+            },
+            {
+                "PutRequest": {
+                    "Item": {
+                        "NoteId": {
+                            "N": "37"
+                        },
+                        "UserId": {
+                            "S": "StudentD"
+                        },
+                        "Note": {
+                            "S": "Note goes here 3"
+                        }                        
+                    }
+                }
+            }             
+        ]
+    },
+    "ReturnConsumedCapacity": "TOTAL",
+    "ReturnItemCollectionMetrics": "SIZE"
+}

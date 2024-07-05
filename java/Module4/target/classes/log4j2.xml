@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="DEBUG">
+<!--    <Properties>-->
+<!--        <Property name="logPath">./logs</Property>-->
+<!--        <Property name="logPattern">[%-5level] %d{yyyy-MM-dd HH:mm:ss} [%t] %c{1} - %msg%n</Property>-->
+<!--        <Property name="serviceName">application</Property>-->
+<!--    </Properties>-->
+<!--    <Appenders>-->
+<!--        <Console name="ConsoleAppender" target="SYSTEM_OUT">-->
+<!--            <PatternLayout pattern="${logPattern}"/>-->
+<!--        </Console>-->
+<!--    </Appenders>-->
+<!--    <Loggers>-->
+<!--        <Root level="DEBUG">-->
+<!--            <AppenderRef ref="ConsoleAppender"/>-->
+<!--        </Root>-->
+<!--        <Logger name="software.amazon.awssdk" level="WARN" />-->
+<!--        <Logger name="software.amazon.awssdk.request" level="DEBUG" />-->
+<!--        <Logger name="software.apache.http.wire" level="WARN" />-->
+<!--    </Loggers>-->
+</Configuration>

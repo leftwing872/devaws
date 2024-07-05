@@ -1,0 +1,34 @@
+#API Gateway Demo
+
+API Gateway mapping template reference: https://docs.aws.amazon.com/ko_kr/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html
+
+API Gateway model:
+{
+    "title": "Note",
+    "type": "object",
+    "properties": {
+        "UserId": {"type": "string"},
+        "NoteId": {"type": "integer"},
+        "Note": {"type": "string"}
+    },
+    "required": ["UserId", "NoteId", "Note"]
+}
+
+API Gateway mapping for DynamoDB:
+{
+    "TableName" : "Notes",
+    "Item" : {
+        "UserId" : {"S": "$input.path('$.UserId')"},
+        "NoteId" : {"N": "$input.path('$.NoteId')"},
+        "Note" : {"S": "$input.path('$.Note')"}
+    }
+}
+
+API Gateway test payload: 
+Invalid payload: {"UserI": "StudentM", "NoteId": 1, "Note":"First note"}
+Valid payload: {"UserId": "StudentM", "NoteId": 1, "Note":"First note"}
+
+Curl command:
+curl -v -d '{"UserId": "StudentEunhak", "NoteId": 328, "Note":"We are almost there."}' \
+-H "Content-Type: application/json" \
+-X POST https://m1tfa2kl2e.execute-api.us-east-1.amazonaws.com/prod/notes

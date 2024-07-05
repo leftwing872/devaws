@@ -1,0 +1,35 @@
+#Cognito Demo
+
+##Create user pool and app client
+
+User pool ARN:
+User pool ID:
+App client ID:
+User Pool URL: https://cognito-idp.us-east-1.amazonaws.com/<user pool id>
+
+##Sign up with user pool
+
+aws cognito-idp sign-up --client-id <app client id> --username eunha --password password --user-attributes Name="email",Value="eunhak@example.com" Name="name",Value="Eunhak" --region us-east-1
+
+##Confirm sign up
+aws cognito-idp admin-confirm-sign-up --user-pool-id <user pool id> --username eunhak --region us-east-1
+
+##Setup Cognito as authorizer for hello world API
+
+
+#Deploy hello world API
+
+##API Gateway endpoint:
+ https://<your api id>.execute-api.us-east-1.amazonaws.com/<your stage name>/snackpick
+
+
+##Initiate auth
+aws cognito-idp admin-initiate-auth --user-pool-id <user pool id> --client-id <app client id> --auth-flow ADMIN_NO_SRP_AUTH --auth-parameters USERNAME=eunhak,PASSWORD=password
+
+
+##APICall test
+curl -H "Authorization: <auth token here>" -s -X GET <api gateway endpoint>/hello-world
+curl -H "Authorization: <auth token here>" -s -X GET https://x8v6iyxzf3.execute-api.us-east-1.amazonaws.com/prod/snackpick
+
+
+

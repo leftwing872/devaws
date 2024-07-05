@@ -1,6 +1,13 @@
 # Compiled class file
 *.class
 
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+Debug
+
 # Log file
 *.log
 

@@ -1,0 +1,44 @@
+Module 8
+
+## CREATE TABLE
+aws dynamodb create-table --cli-input-json file://notestable.json
+
+## WRITE ITEMS
+aws dynamodb put-item \
+    --table-name Notes \
+    --item '{
+        "UserId": {"S": "StudentD"},
+        "NoteId": {"N": "42"} ,
+        "Note": {"S": "Test note"} 
+      }' \
+    --return-consumed-capacity TOTAL
+
+aws dynamodb batch-write-item --generate-cli-skeleton
+
+aws dynamodb batch-write-item --cli-input-json file://batchitems.json
+
+## GET ITEM
+aws dynamodb get-item --table-name Notes \
+    --key '{ 
+        "UserId": {"S": "StudentD"},
+        "NoteId": {"N": "42"} 
+      }'
+
+      
+## QUERY
+aws dynamodb query --table-name Notes --key-condition-expression 'UserId= :userid' --expression-attribute-values '{":userid" : {"S":"StudentD"}}'
+
+## SCAN
+aws dynamodb scan --table-name Notes --filter-expression "Favorite = :favorite" --expression-attribute-values '{":favorite" : {"S" : "YES"}}'
+
+## UPDATE
+aws dynamodb update-item --table-name Notes --key '{"UserId": {"S": "StudentD"}, "NoteId": {"N": "42"}}' --attribute-updates '{"Favorite":{"Value":{"S":"Yes"}, "Action": "PUT"}}'
+
+## CONDITIONAL UPDATE
+aws dynamodb update-item --table-name Notes --key '{"UserId": {"S": "StudentD"}, "NoteId": {"N": "42"}}' --update-expression "SET Note = :newnote" --condition-expression "NOT contains(Favorite,:value)" --expression-attribute-values file://expression-attribute-values.json
+
+## DELETE ITEM
+aws dynamodb delete-item --table-name Notes --key '{"UserId": {"S": "StudentA"}, "NoteId": {"N": "32"}}'
+
+## DELETE TABLE
+aws dynamodb delete-table --table-name Notes
