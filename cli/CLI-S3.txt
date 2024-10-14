@@ -1,0 +1,60 @@
+-------------
+Bucket Create
+-------------
+bucket_name=dev-class-yyyymmddhh 
+
+aws s3 mb s3://$bucket_name
+aws s3 rb s3://$bucket_name
+
+aws s3api create-bucket \
+    --bucket $bucket_name \
+    --create-bucket-configuration LocationConstraint=ap-northeast-2
+-------------
+
+
+-------------
+File copy
+-------------
+bucket_name=dev-class-yyyymmddhh
+file_name=aws-tnc.png
+
+aws s3 cp ~/environment/images/aws-tnc.png s3://$bucket_name/aws-tnc.png
+-- output --
+upload: images/aws-tnc.png to s3://$bucket_name/aws-tnc.png
+
+aws s3api delete-object --bucket $bucket_name --key aws-tnc.png
+
+
+-------------
+Set tags
+-------------
+aws s3api put-object-tagging\
+    --bucket $bucket_name \
+    --key $file_name \
+    --tagging '{"TagSet": [{ "Key": "species", "Value": "dog" }, { "Key": "weight", "Value": "12.2" }, { "Key": "visit_count", "Value": "3" } ]}'
+
+
+
+-------------
+Get tags
+-------------
+aws s3api get-object-tagging --bucket $bucket_name --key $file_name
+aws s3api get-object-tagging --bucket $bucket_name --key $file_name --output table
+aws s3api get-object-tagging --bucket $bucket_name --key $file_name --output text
+
+
+-------------
+File delete (specific version)
+-------------
+https://arch-class-eunhak.s3.ap-northeast-2.amazonaws.com/aws-tnc.png
+aws s3api delete-object --bucket arch-class-eunhak --key aws-tnc.png --version-id iz1BLMMfFDZrTCN3A_98R4xZOm8H.KHA
+
+
+-------------
+Bucket Delete
+-------------
+aws s3 rb s3://dev-class-yyyymmddhh
+
+aws s3api delete-bucket \
+    --bucket dev-class-yyyymmddhh 
+-------------

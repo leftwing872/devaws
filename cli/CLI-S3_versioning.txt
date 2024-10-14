@@ -1,0 +1,48 @@
+-------------
+File copy
+-------------
+bucket_name=arch-class-eunhak
+
+aws s3 cp ~/environment/images/aws-tnc.png s3://$bucket_name/version.png
+aws s3 cp ~/environment/images/aws-tnc2.png s3://$bucket_name/version.png
+aws s3 cp ~/environment/images/logo2.png s3://$bucket_name/version.png
+
+-------------
+Get obect version list
+-------------
+aws s3api list-object-versions --bucket arch-class-eunhak --prefix version.png
+
+aws s3api list-object-versions --bucket arch-class-eunhak --prefix version.png  --query 'Versions[?IsLatest].[VersionId]'
+aws s3api list-object-versions --bucket arch-class-eunhak --prefix version.png  --query 'Versions[].[VersionId]'
+
+-------------
+File delete (specific version)
+-------------
+https://arch-class-eunhak.s3.ap-northeast-2.amazonaws.com/version.png
+aws s3api delete-object --bucket arch-class-eunhak --key version.png --version-id SAFDTOc1oGBkCX5cx81zktUR49c1wOI0
+
+
+-------------
+File copy
+-------------
+bucket_name=arch-class-eunhak
+
+aws s3 cp ~/environment/images/aws-tnc.png s3://$bucket_name/version.png
+aws s3 cp ~/environment/images/aws-tnc2.png s3://$bucket_name/version.png
+aws s3 cp ~/environment/images/logo2.png s3://$bucket_name/version.png
+
+-------------
+Get obect version list
+-------------
+aws s3api list-object-versions --bucket arch-class-eunhak --prefix version.png
+
+aws s3api list-object-versions --bucket arch-class-eunhak --prefix version.png  --query 'Versions[?IsLatest].[VersionId]'
+aws s3api list-object-versions --bucket arch-class-eunhak --prefix version.png  --query 'Versions[].[VersionId]'
+
+-------------
+File delete (specific version)
+-------------
+https://arch-class-eunhak.s3.ap-northeast-2.amazonaws.com/version.png
+aws s3api delete-object --bucket arch-class-eunhak --key version.png --version-id SAFDTOc1oGBkCX5cx81zktUR49c1wOI0
+
+

@@ -1,0 +1,1 @@
+aws s3api get-object-tagging --bucket arch-class-eunhak-tags --key dog.jpg | jq '.TagSet[]'
